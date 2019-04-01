@@ -24,7 +24,7 @@ xAxis = np.arange(0, 5)
 #fig, ax = plt.subplots()
 
 fig = plt.figure()
-ax = plt.axes(xlimx`)
+ax = plt.axes(xlim = (0,100), ylim = ())
 
 #zeros function returns a new array of given shape and type, with zeros.
 #shape, dtype = None, order = ‘C’
