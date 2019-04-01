@@ -7,7 +7,7 @@ import serial
 import collections
 
 # Compute the x and y coordinates for points on a sine curve 
-ser = serial.Serial('COM7')
+ser = serial.Serial('COM6')
 fig = plt.figure()
 ax = plt.axes(xlim=(0, 100), ylim=(0, 1024))
 
@@ -19,7 +19,7 @@ xAxis = np.arange(0, 100)
 
 ser.readline() #so i dont get a chopped up serial byte
 for x in xAxis:    
-    y.appendleft(ser.readline()) # fills y axis w data before going to dynamic graph
+    y.appendleft(int(ser.readline().rstrip())) # fills y axis w data before going to dynamic graph
     #print(y[x])
 line, = ax.plot(xAxis, y)
 
@@ -34,10 +34,10 @@ def animate(i):
     #print("before delete")
     #displayY()
     y.pop()
-    print(y)
+    #print(y)
    # displayY()
-    y.appendleft(ser.readline())
-    print(y)
+    y.appendleft(int(ser.readline().rstrip()))
+    #print(y)
     #displayY()
     line.set_ydata(y)  # update the data.
     return line,
