@@ -6,10 +6,46 @@ import serial
 # Compute the x and y coordinates for points on a sine curve 
 ser = serial.Serial('COM5')
 
+#arange function returns evenly spaced numeric values within an interval, stored as a NumPy array (i.e., an ndarray object).
+#
+#Using this for x axis of plot
+xAxis = np.arange(0, 5)
+
 # First set up the figure, the axis, and the plot element we want to animate
+#fig = plt.figure()
+#ax = plt.axes(xlim=(0, 2), ylim=(-2, 2))
+#line, = ax.plot([], [], lw=2)
+#ylim should be from 0 to 1024
+
+
+# First set up the figure, the axis, and the plot element we want to animate
+#https://www.geeksforgeeks.org/graph-plotting-python-set-2/
+#old fig and ax
+#fig, ax = plt.subplots()
+
 fig = plt.figure()
-ax = plt.axes(xlim=(0, 2), ylim=(-2, 2))
-line, = ax.plot([], [], lw=2)
+ax = plt.axes(xlimx`)
+
+#zeros function returns a new array of given shape and type, with zeros.
+#shape, dtype = None, order = ‘C’
+y = np.zeros((5), dtype=int)
+line, = ax.plot(xAxis, y)
+
+
+#filling y values corresponding to x values before we start.
+for x in xAxis:    
+    y[x] = ser.readline() # fills y axis w data before going to dynamic graph
+    print(y[x])
+
+
+
+
+
+#Positional Read:
+#Note that the index -1 represents the last element. 
+# That's because negative indices in Python (and NumPy) 
+# are counted from the end, so -1 is the last, -2 is the 
+# one before last and -len is actually the first element
 
 # initialization function: plot the background of each frame
 def init():
